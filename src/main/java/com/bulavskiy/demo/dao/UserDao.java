@@ -1,5 +1,9 @@
 package com.bulavskiy.demo.dao;
 
-public interface UserDao {
-  boolean authenticate(String login, String password);
+import com.bulavskiy.demo.model.User;
+
+import java.util.Optional;
+
+public interface UserDao{
+  Optional<User> findUserByLogin(String login);
 }

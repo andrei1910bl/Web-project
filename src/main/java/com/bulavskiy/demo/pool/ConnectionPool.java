@@ -1,6 +1,8 @@
 package com.bulavskiy.demo.pool;
 
 import com.mysql.cj.jdbc.Driver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,6 +12,8 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ConnectionPool {
+  private static final Logger log = LogManager.getLogger();
+
   private static ConnectionPool instance;
   private BlockingQueue<Connection> free = new LinkedBlockingQueue<>(8);
   private BlockingQueue<Connection> used = new LinkedBlockingQueue<>(8);
@@ -17,8 +21,7 @@ public class ConnectionPool {
   static {
     try {
       DriverManager.registerDriver(new Driver());
-    } catch (
-            SQLException e) {
+    } catch (SQLException e) {
       e.printStackTrace();
     }
   }
@@ -50,7 +53,8 @@ public class ConnectionPool {
       connection = free.take();
       used.put(connection);
     } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+      log.error("Interrupted while waiting for connection", e);
+      Thread.currentThread().interrupt();
     }
     return connection;
   }
@@ -60,7 +64,8 @@ public class ConnectionPool {
       used.remove(connection);
       free.put(connection);
     } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+      log.error("Error returning connection to pool", e);
+      Thread.currentThread().interrupt();
     }
   }
 }
