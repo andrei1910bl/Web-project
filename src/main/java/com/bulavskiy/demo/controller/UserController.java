@@ -23,7 +23,7 @@ public class UserController extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    req.getRequestDispatcher("/pages/login.jsp").forward(req, resp);
+    req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
   }
 
   @Override

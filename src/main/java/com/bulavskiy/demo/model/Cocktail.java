@@ -1,22 +1,31 @@
 package com.bulavskiy.demo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cocktail {
   private Long id;
   private String name;
   private String description;
   private int authorId;
+  private List<String> ingredients = new ArrayList<>();
 
-  public Cocktail(Long id, String name, String description, int authorId) {
+  public Cocktail(Long id, String name, String description, int authorId, List<String> ingredients) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.authorId = authorId;
+    this.ingredients = ingredients;
   }
 
-  public Cocktail(String name, String description, int authorId) {
+  public Cocktail(String name, String description, int authorId, List<String> ingredients) {
     this.name = name;
     this.description = description;
     this.authorId = authorId;
+    this.ingredients = ingredients;
+  }
+
+  public Cocktail() {
   }
 
   public Long getId() {
@@ -49,5 +58,13 @@ public class Cocktail {
 
   public void setAuthorId(int authorId) {
     this.authorId = authorId;
+  }
+
+  public List<String> getIngredients() {
+    return ingredients;
+  }
+
+  public void setIngredients(List<String> ingredients) {
+    this.ingredients = ingredients;
   }
 }
