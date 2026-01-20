@@ -23,6 +23,6 @@
   <button type="submit">Войти</button>
 </form>
 
-<p>Нет аккаунта? <a href="register.jsp">Зарегистрироваться</a></p>
+<p>Нет аккаунта? <a href="register">Зарегистрироваться</a></p>
 </body>
 </html>

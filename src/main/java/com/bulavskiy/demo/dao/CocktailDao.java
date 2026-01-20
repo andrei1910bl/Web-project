@@ -8,5 +8,8 @@ import java.util.Map;
 public interface CocktailDao {
 
   List<Cocktail> findAll();
-  boolean create(Cocktail cocktail, Map<Long, String> ingredients);
+  boolean create(Cocktail cocktail, Map<String, String> ingredients);
+  double getAverageRating(int cocktailId);
+  List<Cocktail> findByAuthorId(Long authorId);
+
 }

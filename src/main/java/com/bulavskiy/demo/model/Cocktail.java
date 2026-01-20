@@ -7,10 +7,10 @@ public class Cocktail {
   private Long id;
   private String name;
   private String description;
-  private int authorId;
+  private Long authorId;
   private List<String> ingredients = new ArrayList<>();
 
-  public Cocktail(Long id, String name, String description, int authorId, List<String> ingredients) {
+  public Cocktail(Long id, String name, String description, Long authorId, List<String> ingredients) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -18,7 +18,7 @@ public class Cocktail {
     this.ingredients = ingredients;
   }
 
-  public Cocktail(String name, String description, int authorId, List<String> ingredients) {
+  public Cocktail(String name, String description, Long authorId, List<String> ingredients) {
     this.name = name;
     this.description = description;
     this.authorId = authorId;
@@ -52,11 +52,11 @@ public class Cocktail {
     this.description = description;
   }
 
-  public int getAuthorId() {
+  public Long getAuthorId() {
     return authorId;
   }
 
-  public void setAuthorId(int authorId) {
+  public void setAuthorId(Long authorId) {
     this.authorId = authorId;
   }
 

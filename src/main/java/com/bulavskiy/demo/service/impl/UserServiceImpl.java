@@ -2,6 +2,7 @@ package com.bulavskiy.demo.service.impl;
 
 import com.bulavskiy.demo.dao.UserDao;
 import com.bulavskiy.demo.dao.impl.UserDaoImpl;
+import com.bulavskiy.demo.model.Role;
 import com.bulavskiy.demo.model.User;
 import com.bulavskiy.demo.service.PassHasherService;
 import com.bulavskiy.demo.service.UserService;
@@ -28,10 +29,9 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public boolean register(User user) {
-    if(userDao.findUserByLogin(user.getLogin()).isPresent()){
-      return false;
-    }
-    user.setPassword(PassHasherService.hash(user.getPassword()));
+    String hashedPassword = PassHasherService.hash(user.getPassword());
+    user.setPassword(hashedPassword);
+    user.setRole(Role.USER);
     return userDao.insert(user);
   }
 }

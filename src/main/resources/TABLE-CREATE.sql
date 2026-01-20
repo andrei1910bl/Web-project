@@ -24,6 +24,7 @@ CREATE TABLE ratings (
     user_id BIGINT UNSIGNED NOT NULL,
     cocktail_id BIGINT UNSIGNED NOT NULL,
     score INTEGER CHECK (score >= 1 AND score <= 5),
+    UNIQUE KEY (user_id, cocktail_id),
     CONSTRAINT fk_rating_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     CONSTRAINT fk_rating_cocktail FOREIGN KEY (cocktail_id) REFERENCES cocktails(id) ON DELETE CASCADE
 );
